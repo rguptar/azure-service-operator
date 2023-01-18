@@ -112,6 +112,8 @@ import (
 	network_customizations "github.com/Azure/azure-service-operator/v2/api/network/customizations"
 	network_alpha20201101 "github.com/Azure/azure-service-operator/v2/api/network/v1alpha1api20201101"
 	network_alpha20201101s "github.com/Azure/azure-service-operator/v2/api/network/v1alpha1api20201101storage"
+	network_v20180801 "github.com/Azure/azure-service-operator/v2/api/network/v1beta20180801"
+	network_v20180801s "github.com/Azure/azure-service-operator/v2/api/network/v1beta20180801storage"
 	network_v20180901 "github.com/Azure/azure-service-operator/v2/api/network/v1beta20180901"
 	network_v20180901s "github.com/Azure/azure-service-operator/v2/api/network/v1beta20180901storage"
 	network_v20201101 "github.com/Azure/azure-service-operator/v2/api/network/v1beta20201101"
@@ -408,6 +410,7 @@ func getKnownStorageTypes() []*registration.StorageType {
 	result = append(result, &registration.StorageType{Obj: new(machinelearningservices_v20210701s.WorkspacesConnection)})
 	result = append(result, &registration.StorageType{Obj: new(managedidentity_v20181130s.UserAssignedIdentity)})
 	result = append(result, &registration.StorageType{Obj: new(managedidentity_v20220131ps.FederatedIdentityCredential)})
+	result = append(result, &registration.StorageType{Obj: new(network_v20180801s.Trafficmanagerprofile)})
 	result = append(result, &registration.StorageType{Obj: new(network_v20180901s.PrivateDnsZone)})
 	result = append(result, &registration.StorageType{Obj: new(network_v20201101s.LoadBalancer)})
 	result = append(result, &registration.StorageType{Obj: new(network_v20201101s.NetworkInterface)})
@@ -752,6 +755,8 @@ func getKnownTypes() []client.Object {
 		new(network_alpha20201101s.VirtualNetworkGateway),
 		new(network_alpha20201101s.VirtualNetworksSubnet),
 		new(network_alpha20201101s.VirtualNetworksVirtualNetworkPeering))
+	result = append(result, new(network_v20180801.Trafficmanagerprofile))
+	result = append(result, new(network_v20180801s.Trafficmanagerprofile))
 	result = append(result, new(network_v20180901.PrivateDnsZone))
 	result = append(result, new(network_v20180901s.PrivateDnsZone))
 	result = append(
@@ -943,6 +948,8 @@ func createScheme() *runtime.Scheme {
 	_ = managedidentity_v20220131ps.AddToScheme(scheme)
 	_ = network_alpha20201101.AddToScheme(scheme)
 	_ = network_alpha20201101s.AddToScheme(scheme)
+	_ = network_v20180801.AddToScheme(scheme)
+	_ = network_v20180801s.AddToScheme(scheme)
 	_ = network_v20180901.AddToScheme(scheme)
 	_ = network_v20180901s.AddToScheme(scheme)
 	_ = network_v20201101.AddToScheme(scheme)
@@ -1041,6 +1048,7 @@ func getResourceExtensions() []genruntime.ResourceExtension {
 	result = append(result, &network_customizations.PublicIPAddressExtension{})
 	result = append(result, &network_customizations.RouteTableExtension{})
 	result = append(result, &network_customizations.RouteTablesRouteExtension{})
+	result = append(result, &network_customizations.TrafficmanagerprofileExtension{})
 	result = append(result, &network_customizations.VirtualNetworkExtension{})
 	result = append(result, &network_customizations.VirtualNetworkGatewayExtension{})
 	result = append(result, &network_customizations.VirtualNetworksSubnetExtension{})

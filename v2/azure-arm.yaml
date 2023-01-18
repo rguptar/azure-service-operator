@@ -1164,6 +1164,10 @@ objectModelConfiguration:
         $exportAs: WorkspacesConnection
         $supportedFrom: v2.0.0-beta.2
   network:
+    2018-08-01:
+      TrafficManagerProfile:
+        $export: true
+        $supportedFrom: v2.0.0-beta.4
     2018-09-01:
       PrivateDnsZone:
         $export: true
